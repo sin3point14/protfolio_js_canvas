@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html style="background: white; height:100%">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Someone?</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script>
+
+    function init_canvas() {
+    	var blocks= [];
+    	var canvas = document.getElementById('bg');
+        if (canvas.getContext) {
+
+        	var ctx = canvas.getContext('2d');
+
+        	ctx.canvas.width  = window.innerWidth;
+  			ctx.canvas.height = window.innerHeight;
+  			ctx.fillRect(400, 200 , 200, 200);
+  			function block(a,b){
+				return {
+				x: a,
+				y:b
+				};
+			}
+			function bullets(){
+	 			blocks.forEach(function (b,index,object) {
+ 				ctx.clearRect(b.x-5,b.y,10,10);
+ 				b.y-=2;
+ 				
+ 				if(b.y>-10){
+	 				ctx.fillRect(b.x-5, b.y , 10, 10);
+ 				}
+ 				else{
+ 					object.splice(index, 1);
+	 			}
+				});
+				if(blocks.length!=0){
+					window.requestAnimationFrame(bullets);
+				}
+			}
+  			canvas.onmousemove = function(e) { 
+ 			   var x = e.pageX - this.offsetLeft; 
+ 			   ctx.clearRect(0,this.offsetHeight-80,this.offsetWidth,40);
+ 			   ctx.fillRect(x-5, this.offsetHeight-80 , 10, 10);
+ 			   ctx.fillRect(x-15, this.offsetHeight-70 , 31, 30);
+			};
+			canvas.onclick = function(e) { 
+				let x = e.pageX - this.offsetLeft;
+				var b= new block(x, this.offsetHeight-90);
+ 			   	blocks.push(b);
+ 			   	if(blocks.length==1){
+ 			   	window.requestAnimationFrame(bullets);
+ 			   	}
+
+			};
+	       // canvas.addEventListener("mousemove", drawSS(canvas));
+	       
+     	}
+    }
+
+
+</script>
+
+
+</head>
+<body onload="init_canvas();" style="background: white;height: 100%;">
+<!--<div class="cont">
+<div class="gola g1"></div>
+<div class="gola g2"></div>
+<div class="gola g3"></div>
+<div class="gola ci c1"></div>
+<div class="gola ci c2"></div>
+<div class="gola ci c3"></div>
+<div class="gola ci c4"></div>
+<div class="gola ci c5"></div>
+<div class="gola ci c6"></div>
+<div class="gola ci c7"></div>
+<div class="gola ci c8"></div>
+<div class="gola ci c9"></div>
+<div class="line l1"></div>
+<div class="line l2"></div>
+<div class="container">
+<div class="names">
+<div class="name a aa">sin3point14</div>
+<div class="name b bb">senpai</div>
+<div class="name c cc">MaCh</div>
+<div class="name d dd">Manas Chaudhary</div>
+</div>
+<div class="desc"><h1>4 Names 1 Avatar</h1><p>Hi! I am an undergrad student exploring the world of computer science.</p></div>
+</div>
+</div>
+<div class="projs"><div><span>My Projects</span></div></div>
+
+<div class="proj">
+<a href="https://github.com/sin3point14/minesweeper">
+	<div class="p p1">
+		<div class="lin li1">
+			
+		</div>
+				<div class="lin li2"></div><div class="z z1"><p>Minesweeper</p></div></div></a>
+<a href="https://github.com/sin3point14/DAVSV-techesta"><div class="p p2"><div class="lin li1"></div><div class="lin li2"></div><div class="z z2"><p>Techesta Website</p></div></div></a>
+<a href="https://github.com/sin3point14/minesweeper"><div class="p p3"><div class="lin li1"></div><div class="lin li2"></div><div class="z z3"><p>Ludo</p></div></div></a>
+<a href="https://github.com/sin3point14/DAVSV-techesta"><div class="p p4"><div class="lin li1"></div><div class="lin li2"></div><div class="z z4"><p>Tic Tac Toe</p></div></div></a>
+
+</div>-->
+<canvas id="bg"></canvas>
+
+
+
+
+</body>
+</html>
