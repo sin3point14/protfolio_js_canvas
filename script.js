@@ -83,7 +83,6 @@ function navbar(){
 function toHome(){
 	loadDoc("home.html");
 	nav=0;
-	init_canvas();
 }
 function toProj(){
 	loadDoc("proj.html");
@@ -94,6 +93,9 @@ function loadDoc(filename) {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
        document.getElementById("cont").innerHTML = this.responseText;
+       if(filename=="home.html"){
+       		init_canvas();
+       }
       }
     };
     xhttp.open("GET","content/" + filename , true);
