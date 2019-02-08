@@ -1,10 +1,13 @@
+var nav=0;
 function navbar(){
 		let x=document.getElementById("c");
-		if(x.style.display!="none"){
+		if(nav==1){
 			x.style.display="none";
+			nav=0;
 		}
 		else{
 			x.style.display="inline";
+			nav=1;
 		}
 	}
     function init_canvas() {
@@ -75,15 +78,15 @@ function navbar(){
  			   	}
 
 			};
-	       // canvas.addEventListener("mousemove", drawSS(canvas));
-	       
      	}
     }
 function toHome(){
 	loadDoc("home.html");
+	nav=0;
 }
 function toProj(){
 	loadDoc("proj.html");
+	nav=0
 }
 function loadDoc(filename) {
     var xhttp = new XMLHttpRequest();
@@ -94,4 +97,7 @@ function loadDoc(filename) {
     };
     xhttp.open("GET","content/" + filename , true);
     xhttp.send();
+  }
+  function send(e){
+  	window.location=e;
   }
