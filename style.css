@@ -6,11 +6,14 @@
   font-family: gentona;
   src: url("Gentona.otf");
 }
+
 html, body{
 	background-color: rgb(239, 167, 167);
 	/*height:138%;*/
 	padding: 0;
 	margin:0;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 .cont{
 	position: relative;

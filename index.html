@@ -1,24 +1,71 @@
 <!DOCTYPE html>
 <html style="background: white; height:100%">
 <head>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/minecraft-webfont.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <title>Someone?</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
-
+<style type="text/css">
+@font-face {
+    font-family: 'minecraft1';
+    src: url('minecraft.ttf');
+}
+#nav{
+	position: absolute;
+	top:20px;
+	left:20px;
+	width: 23px;
+	height: 30px;
+	overflow: visible;
+	z-index: 22;
+}
+.bar {
+  width: 23px;
+  height: 2px;
+  background-color: black;
+  margin: 6px 0;
+}
+#c{
+	padding: 10px;
+	border: solid 1px black;
+	position: absolute;
+	top:20px;
+	left:58px;
+	font-family: minecraft;
+	width:120px;
+	display: none;
+}
+#c p{
+	margin: 0;
+}
+</style>
 <script>
-
+	function navbar(){
+		let x=document.getElementById("c");
+		if(x.style.display=="none"){
+			x.style.display="inline";
+		}
+		else{
+			x.style.display="none"
+		}
+	}
     function init_canvas() {
+    		
     	var blocks= [];
     	var canvas = document.getElementById('bg');
         if (canvas.getContext) {
-
         	var ctx = canvas.getContext('2d');
-
         	ctx.canvas.width  = window.innerWidth;
   			ctx.canvas.height = window.innerHeight;
-  			ctx.fillRect(400, 200 , 200, 200);
+  			//ctx.fillStyle = 'blue';
+  			//ctx.fillRect(1, 1 , 200, 200);
+  			ctx.font = "50px minecraft";
+  			ctx.fillStyle = '#111111';
+  			ctx.textAlign = "center"; 
+			ctx.fillText("sin3point14", window.innerWidth/2, window.innerHeight/2);
+  			ctx.fillStyle = 'black';
   			function block(a,b){
 				return {
 				x: a,
@@ -28,12 +75,27 @@
 			function bullets(){
 	 			blocks.forEach(function (b,index,object) {
  				ctx.clearRect(b.x-5,b.y,10,10);
- 				b.y-=2;
- 				
- 				if(b.y>-10){
+ 				b.y-=20;
+ 				d=0;
+ 				for(let j=1;j<=20;j++){
+ 					for(let i=1;i<=10;i++){
+ 						var p = ctx.getImageData(b.x+i, b.y+j, 1, 1).data;
+ 						//console.log(p[0]);
+ 						if((p[0]!=0)||(p[1]!=0)||(p[2]!=0)){
+	 						d=1;
+ 							break;
+ 						}
+ 					}
+ 				}
+ 				if(b.y>-10&&d==0){
+ 					ctx.fillStyle = '#555555';
 	 				ctx.fillRect(b.x-5, b.y , 10, 10);
  				}
  				else{
+ 					if(d==1){
+ 						ctx.fillRect(b.x-5, b.y , 10, 20);
+ 						 ctx.clearRect(b.x-9,b.y-10,15,30);
+ 					}
  					object.splice(index, 1);
 	 			}
 				});
@@ -44,6 +106,7 @@
   			canvas.onmousemove = function(e) { 
  			   var x = e.pageX - this.offsetLeft; 
  			   ctx.clearRect(0,this.offsetHeight-80,this.offsetWidth,40);
+ 			   ctx.fillStyle = '#111111';
  			   ctx.fillRect(x-5, this.offsetHeight-80 , 10, 10);
  			   ctx.fillRect(x-15, this.offsetHeight-70 , 31, 30);
 			};
@@ -106,10 +169,17 @@
 <a href="https://github.com/sin3point14/DAVSV-techesta"><div class="p p4"><div class="lin li1"></div><div class="lin li2"></div><div class="z z4"><p>Tic Tac Toe</p></div></div></a>
 
 </div>-->
+
+<div id="c"><p>Home</p><p style="margin-top:5px; ">My Projects</p></div>
+
 <canvas id="bg"></canvas>
 
 
-
-
+<p   style="text-decoration: underline;  font-family: minecraft;position: absolute; z-index: 20; top: 0;left: 0;text-align: center; width:100vw; font-size: 15px color:#333333"><span onclick="init_canvas()" style="cursor: pointer;">Refresh</span></p>
+<div id="nav" onclick="navbar();">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
 </body>
 </html>
