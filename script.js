@@ -83,10 +83,11 @@ function navbar(){
 function toHome(){
 	loadDoc("home.html");
 	nav=0;
+	init_canvas();
 }
 function toProj(){
 	loadDoc("proj.html");
-	nav=0
+	nav=0;
 }
 function loadDoc(filename) {
     var xhttp = new XMLHttpRequest();
