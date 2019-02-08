@@ -11,7 +11,8 @@ function navbar(){
 		}
 	}
     function init_canvas() {
-    		
+    	var x;
+    	var color= "#111111";
     	var blocks= [];
     	var canvas = document.getElementById('bg');
         if (canvas.getContext) {
@@ -46,6 +47,7 @@ function navbar(){
  						}
  					}
  				}
+ 				
  				if(b.y>-10&&d==0){
  					ctx.fillStyle = '#555555';
 	 				ctx.fillRect(b.x-5, b.y , 10, 10);
@@ -54,6 +56,18 @@ function navbar(){
  					if(d==1){
  						ctx.fillRect(b.x-5, b.y , 10, 20);
  						 ctx.clearRect(b.x-9,b.y-10,15,30);
+ 						 color="red";
+ 						 ctx.fillStyle = color;
+ 					     ctx.fillRect(x-5, canvas.offsetHeight-80 , 10, 10);
+ 				         ctx.fillRect(x-15, canvas.offsetHeight-70 , 31, 30);
+ 						 setTimeout(function(){
+ 						 	color="#111111";
+ 						 	ctx.fillStyle = color;
+ 					     ctx.fillRect(x-5, canvas.offsetHeight-80 , 10, 10);
+ 				         ctx.fillRect(x-15, canvas.offsetHeight-70 , 31, 30);
+
+
+ 						},50);
  					}
  					object.splice(index, 1);
 	 			}
@@ -63,15 +77,15 @@ function navbar(){
 				}
 			}
   			canvas.onmousemove = function(e) { 
- 			   var x = e.pageX - this.offsetLeft; 
+ 			   x = e.pageX - this.offsetLeft; 
  			   ctx.clearRect(0,this.offsetHeight-80,this.offsetWidth,40);
- 			   ctx.fillStyle = '#111111';
+ 			   ctx.fillStyle = color;
  			   ctx.fillRect(x-5, this.offsetHeight-80 , 10, 10);
  			   ctx.fillRect(x-15, this.offsetHeight-70 , 31, 30);
 			};
 			canvas.onclick = function(e) { 
-				let x = e.pageX - this.offsetLeft;
-				var b= new block(x, this.offsetHeight-90);
+				let x1 = e.pageX - this.offsetLeft;
+				var b= new block(x1, this.offsetHeight-90);
  			   	blocks.push(b);
  			   	if(blocks.length==1){
  			   	window.requestAnimationFrame(bullets);
