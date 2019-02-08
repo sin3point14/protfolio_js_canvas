@@ -12,6 +12,10 @@
     font-family: 'minecraft1';
     src: url('minecraft.ttf');
 }
+#cont{
+	height: 100vh;
+	width: 100vw;
+}
 #nav{
 	position: absolute;
 	top:20px;
@@ -39,16 +43,18 @@
 }
 #c p{
 	margin: 0;
+	text-decoration: underline;
+	cursor: pointer;
 }
 </style>
-<script>
+<script src="script.js">
 	function navbar(){
 		let x=document.getElementById("c");
-		if(x.style.display=="none"){
-			x.style.display="inline";
+		if(x.style.display!="none"){
+			x.style.display="none";
 		}
 		else{
-			x.style.display="none"
+			x.style.display="inline";
 		}
 	}
     function init_canvas() {
@@ -169,8 +175,8 @@
 <a href="https://github.com/sin3point14/DAVSV-techesta"><div class="p p4"><div class="lin li1"></div><div class="lin li2"></div><div class="z z4"><p>Tic Tac Toe</p></div></div></a>
 
 </div>-->
-
-<div id="c"><p>Home</p><p style="margin-top:5px; ">My Projects</p></div>
+<div id="cont">
+<div id="c"><p onclick="init_canvas();">Home</p><p onclick="toProj();" id="l2" style="margin-top:5px; ">My Projects</p></div>
 
 <canvas id="bg"></canvas>
 
@@ -180,6 +186,7 @@
 <div class="bar"></div>
 <div class="bar"></div>
 <div class="bar"></div>
+</div>
 </div>
 </body>
 </html>

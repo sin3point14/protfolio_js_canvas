@@ -1,0 +1,11 @@
+<div id="c"><p onclick="init_canvas();">Home</p><p onclick="toProj();" id="l2" style="margin-top:5px; ">My Projects</p></div>
+
+<canvas id="bg"></canvas>
+
+
+<p   style="text-decoration: underline;  font-family: minecraft;position: absolute; z-index: 20; top: 0;left: 0;text-align: center; width:100vw; font-size: 15px color:#333333"><span onclick="init_canvas()" style="cursor: pointer;">Refresh</span></p>
+<div id="nav" onclick="navbar();">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
